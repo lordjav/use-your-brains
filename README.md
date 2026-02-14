@@ -2,13 +2,18 @@
 
 ## 🚀 Cómo ejecutar el juego
 
-### Opción 1: Usando Python (Recomendado)
+### Opción 1: Usando el script automático
+**Windows:**
 1. Haz doble clic en `server.bat`
+2. Se abrirá automáticamente en tu navegador
+
+**macOS/Linux:**
+1. Ejecuta en la terminal: `./server.sh`
 2. Se abrirá automáticamente en tu navegador
 
 ### Opción 2: Comando manual
 ```bash
-python server.py
+python3 server.py
 ```
 
 ### Opción 3: Usando Node.js (si tienes npx instalado)
@@ -32,7 +37,8 @@ npx http-server -p 8000 -c-1
 - `script.js` - Lógica del juego
 - `preguntas.json` - Base de datos de preguntas
 - `server.py` - Servidor local
-- `server.bat` - Ejecutor automático
+- `server.bat` - Ejecutor automático (Windows)
+- `server.sh` - Ejecutor automático (macOS/Linux)
 
 ## 🔧 Requisitos
 
