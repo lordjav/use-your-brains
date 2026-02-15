@@ -7,8 +7,8 @@ export const config = {
   googleDrive: {
     // This placeholder is replaced by GitHub Actions with the secret value
     manifestFileId: '__MANIFEST_FILE_ID__',
-    // Direct download endpoint for Google Drive files
-    downloadEndpoint: 'https://drive.google.com/uc?export=download&id='
+    // Google Apps Script proxy endpoint (avoids CORS issues)
+    downloadEndpoint: 'https://script.google.com/macros/s/AKfycbwYbktN4wk9UesNGnE4QjPtu2aaMsnSGYJETmvTmJ_JLWMOca3gM3rN1-ZTXw3DkE7d4Q/exec?id='
   },
   app: {
     questionnaireCacheDuration: 3600000, // 1 hour in milliseconds
