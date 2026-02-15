@@ -17,7 +17,7 @@ Debes generar un objeto JSON con exactamente estos campos de primer nivel:
 | Campo | Tipo | Descripción y reglas |
 |-------|------|----------------------|
 | `title` | string | Título del documento. Origen: si la primera página es portada o índice, usar el título de la **segunda** página; en caso contrario, usar el título de la **primera** página. No inventar títulos. |
-| `read_time` | number (entero) | Tiempo estimado de lectura del documento **en minutos**. Fórmula: `(total de palabras del documento) / 100` + `2 × (número de imágenes del documento)`. Cuentan como imagen: **figuras, gráficos, diagramas y fotos**. Redondear al entero más próximo. La constante 100 = palabras por minuto asumidas. |
+| `read_time` | number (entero) | Tiempo estimado de lectura del documento **en minutos**. Fórmula: `(total de palabras del documento) / 100` + `2 × (número de imágenes del documento)`. Cuentan como imagen: **figuras, gráficos, diagramas y fotos**. Redondear al entero más próximo. La constante 100 = palabras por minuto asumidas. Redondear al múltiplo de 5 más cercano. |
 | `bibliography` | array | Siempre un array vacío: `[]`. |
 | `id` | string | Identificador del capítulo. Formato obligatorio: el prefijo `"guyton-"` seguido de un nombre breve del capítulo en **inglés**, 2–3 palabras, en **minúsculas** y separadas por **un solo guion** (ej.: `guyton-tubular-reabsorption`). Sin espacios ni otros caracteres. |
 | `questions` | array | Lista de preguntas (ver sección siguiente). **Cantidad:** Objetivo 50 preguntas. Si no hay contenido suficiente, generar **al menos 30**; si tampoco hay para 30, el **mínimo absoluto es 20**. |

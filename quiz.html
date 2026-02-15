@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cuestionario - Use sus Sesos</title>
+    <link rel="icon"
+        href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='0.9em' font-size='90'>🧠</text></svg>">
+    <link rel="stylesheet" href="styles/main.css?v=4">
+    <link rel="stylesheet" href="styles/quiz.css?v=4">
+    <link rel="stylesheet" href="styles/additions.css?v=4">
+</head>
+
+<body>
+    <!-- Theme Control Button -->
+    <div class="control-buttons">
+        <button id="theme-control-btn" class="control-btn" aria-label="Cambiar tema">
+            🌙
+        </button>
+    </div>
+
+    <div class="container">
+        <!-- Pantalla de inicio -->
+        <div id="start-screen" class="screen active">
+            <div class="start-content">
+                <!-- Questionnaire Info -->
+                <div id="questionnaire-info" class="questionnaire-info">
+                    <!-- Populated by JavaScript -->
+                </div>
+
+                <img src="assets/images/homer-simpson-the-simpsons.gif" alt="Homer Simpson" class="start-image">
+                <h1>🧠 Use sus Sesos</h1>
+                <p>¿Estás listo para poner a prueba tus conocimientos?</p>
+
+                <div class="game-settings">
+                    <label for="question-count">Número de preguntas:</label>
+                    <select id="question-count" class="question-selector">
+                        <option value="10">10 preguntas</option>
+                        <option value="20" selected>20 preguntas</option>
+                        <option value="30">30 preguntas</option>
+                        <option value="40">40 preguntas</option>
+                        <option value="50">50 preguntas</option>
+                        <option value="100">100 preguntas</option>
+                    </select>
+                </div>
+
+                <button id="start-btn" class="btn btn-primary">Comenzar Juego</button>
+                <button id="back-to-home-start-btn" class="btn btn-secondary">Volver al Inicio</button>
+            </div>
+        </div>
+
+        <!-- Pantalla de juego -->
+        <div id="game-screen" class="screen">
+            <header class="game-header">
+                <div class="stats-container">
+                    <div class="stat">
+                        <span class="stat-label">Puntos:</span>
+                        <span id="points" class="stat-value">0</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-label">Pregunta:</span>
+                        <span id="current-question" class="stat-value">1/15</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-label">Aciertos:</span>
+                        <span id="accuracy" class="stat-value">0%</span>
+                    </div>
+                </div>
+
+                <div class="progress-container">
+                    <div class="progress-bar">
+                        <div id="progress-fill" class="progress-fill"></div>
+                    </div>
+                </div>
+
+                <button id="end-quiz-btn" class="btn btn-warning btn-end-quiz">Terminar Cuestionario</button>
+            </header>
+
+            <div class="question-container">
+                <div id="difficulty-indicator" class="difficulty-indicator">
+                    <span class="difficulty-label">Dificultad:</span>
+                    <div class="difficulty-stars">
+                        <span class="star">⭐</span>
+                        <span class="star">⭐</span>
+                        <span class="star">⭐</span>
+                    </div>
+                </div>
+
+                <div id="question-text" class="question-text">
+                    ¿Cuál es la capital de Francia?
+                </div>
+
+                <div id="answers-container" class="answers-container">
+                    <!-- Aquí se generarán dinámicamente los botones de respuesta -->
+                </div>
+
+                <!-- Container para preguntas tipo lista -->
+                <div id="list-input-container" class="list-input-container" style="display: none;">
+                    <div class="list-header">
+                        <h3>🎯 ¡Encuentra todas las respuestas!</h3>
+                        <p>Escribe palabras clave relacionadas con la pregunta</p>
+                        <div id="expected-answers-count" class="expected-count">Respuestas esperadas: 0</div>
+                    </div>
+                    <div class="input-group">
+                        <input type="text" id="list-answer-input" class="list-input"
+                            placeholder="Escribe tu respuesta aquí... (ej: inspección, palpación)">
+                        <button id="submit-list-answer" class="btn btn-secondary">Enviar</button>
+                    </div>
+                    <div id="revealed-answers" class="revealed-answers"></div>
+                    <div class="list-controls">
+                        <button id="show-all-answers" class="btn btn-warning" style="display: none;">Mostrar
+                            Todas</button>
+                        <button id="finish-list-question" class="btn btn-primary"
+                            style="display: none;">Continuar</button>
+                    </div>
+                </div>
+
+                <!-- Explicación de la respuesta -->
+                <div id="explanation-container" class="explanation-container" style="display: none;">
+                    <div id="explanation-text" class="explanation-text"></div>
+                    <button id="next-question-btn" class="btn btn-primary">Siguiente Pregunta</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Pantalla de resultados -->
+        <div id="results-screen" class="screen">
+            <h2>🎉 ¡Juego Completado!</h2>
+
+            <div class="results-container">
+                <div class="result-card">
+                    <h3>Puntuación Final</h3>
+                    <div id="final-points" class="final-score">0</div>
+                </div>
+
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-icon">✅</div>
+                        <div class="stat-info">
+                            <span class="stat-number" id="correct-answers">0</span>
+                            <span class="stat-desc">Correctas</span>
+                        </div>
+                    </div>
+
+                    <div class="stat-card">
+                        <div class="stat-icon">❌</div>
+                        <div class="stat-info">
+                            <span class="stat-number" id="incorrect-answers">0</span>
+                            <span class="stat-desc">Incorrectas</span>
+                        </div>
+                    </div>
+
+                    <div class="stat-card">
+                        <div class="stat-icon">📊</div>
+                        <div class="stat-info">
+                            <span class="stat-number" id="final-accuracy">0%</span>
+                            <span class="stat-desc">Precisión</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="difficulty-breakdown">
+                    <h3>Rendimiento por Dificultad</h3>
+                    <div class="difficulty-stats">
+                        <div class="diff-stat">
+                            <span class="diff-label">⭐ Fácil:</span>
+                            <span id="easy-stats" class="diff-score">0/0</span>
+                        </div>
+                        <div class="diff-stat">
+                            <span class="diff-label">⭐⭐ Medio:</span>
+                            <span id="medium-stats" class="diff-score">0/0</span>
+                        </div>
+                        <div class="diff-stat">
+                            <span class="diff-label">⭐⭐⭐ Difícil:</span>
+                            <span id="hard-stats" class="diff-score">0/0</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <button id="restart-btn" class="btn btn-primary">Jugar de Nuevo</button>
+            <button id="back-to-home-btn" class="btn btn-secondary">Volver al Inicio</button>
+        </div>
+    </div>
+
+    <script type="module" src="src/quiz-main.js?v=3"></script>
+</body>
+
+</html>

@@ -1,0 +1,100 @@
+/* Additional CSS for new components */
+
+/* === PDF Download Button === */
+.pdf-download {
+    margin-top: 20px;
+}
+
+.btn-download {
+    background: linear-gradient(45deg, #10b981, #059669);
+    color: white;
+    text-decoration: none;
+    display: inline-block;
+}
+
+.btn-download:hover {
+    text-decoration: none;
+    color: white;
+}
+
+.read-time {
+    margin-top: 10px;
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    text-align: center;
+}
+
+/* === End Quiz Button === */
+.btn-end-quiz {
+    position: absolute;
+    top: -48px;
+    right: 0;
+    z-index: 1000;
+    padding: 10px 20px;
+    font-size: 0.9rem;
+}
+
+/* === Questionnaire Info Improvements === */
+.questionnaire-info {
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+.questionnaire-info h2 {
+    font-size: 1.8rem;
+    margin-bottom: 15px;
+    color: var(--primary-color);
+}
+
+.questionnaire-info p {
+    color: var(--text-secondary);
+    margin-bottom: 15px;
+    line-height: 1.6;
+}
+
+.questionnaire-info .metadata {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+    margin: 15px 0;
+    font-size: 1rem;
+    color: var(--text-secondary);
+}
+
+/* === Privacy Policy Link Styling === */
+.privacy-section a {
+    color: var(--primary-color);
+    font-weight: 600;
+}
+
+[data-theme="dark"] .privacy-section a {
+    color: #a78bfa;
+}
+
+/* === Make stat cards non-hoverable explicitly === */
+.stat-card {
+    pointer-events: none;
+}
+
+.stat-card * {
+    pointer-events: none;
+}
+
+/* === Mobile Responsive === */
+@media (max-width: 768px) {
+    .btn-end-quiz {
+        position: static;
+        width: 100%;
+        margin-top: 15px;
+    }
+
+    .questionnaire-info h2 {
+        font-size: 1.5rem;
+    }
+
+    .questionnaire-info .metadata {
+        flex-direction: column;
+        gap: 10px;
+    }
+}
