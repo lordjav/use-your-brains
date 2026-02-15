@@ -3,7 +3,7 @@
  * Main entry point for the application
  */
 
-import { googleDriveService } from '../services/GoogleDriveService.js';
+import { questionnaireService } from '../services/QuestionnaireService.js';
 import { storageService } from '../services/StorageService.js';
 import { audioService } from '../services/AudioService.js';
 import { themeService } from '../services/ThemeService.js';
@@ -125,17 +125,17 @@ export class LandingPage {
   }
 
   /**
-   * Loads questionnaires from Google Drive
+   * Loads questionnaires from local files
    */
   async loadQuestionnaires() {
     try {
-      this.questionnaires = await googleDriveService.fetchQuestionnaires();
+      this.questionnaires = await questionnaireService.fetchQuestionnaires();
 
       if (this.questionnaires.length === 0) {
         errorHandler.showError('No se encontraron cuestionarios disponibles');
       }
     } catch (error) {
-      errorHandler.handleGoogleDriveError(error);
+      errorHandler.handleQuestionnaireError(error);
       errorHandler.showError('Error al cargar cuestionarios');
     }
   }

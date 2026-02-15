@@ -1,0 +1,31 @@
+{
+  "version": "1.0",
+  "lastUpdated": "2026-02-15",
+  "questionnaires": [
+    {
+      "id": "guyton-glomerular-filtration",
+      "jsonFile": "guyton-glomerular-filtration/guyton-glomerular-filtration.json",
+      "pdfFile": "guyton-glomerular-filtration/guyton-glomerular-filtration.pdf"
+    },
+    {
+      "id": "guyton-liquids-electrolites",
+      "jsonFile": "guyton-liquids-electrolites/guyton-liquids-electrolites.json",
+      "pdfFile": "guyton-liquids-electrolites/guyton-liquids-electrolites.pdf"
+    },
+    {
+      "id": "guyton-tubular-reabsorption",
+      "jsonFile": "guyton-tubular-reabsorption/guyton-tubular-reabsorption.json",
+      "pdfFile": "guyton-tubular-reabsorption/guyton-tubular-reabsorption.pdf"
+    },
+    {
+      "id": "guyton-urinary-system",
+      "jsonFile": "guyton-urinary-system/guyton-urinary-system.json",
+      "pdfFile": "guyton-urinary-system/guyton-urinary-system.pdf"
+    },
+    {
+      "id": "guyton-urine-concentration",
+      "jsonFile": "guyton-urine-concentration/guyton-urine-concentration.json",
+      "pdfFile": "guyton-urine-concentration/guyton-urine-concentration.pdf"
+    }
+  ]
+}

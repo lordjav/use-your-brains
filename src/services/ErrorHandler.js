@@ -63,13 +63,13 @@ export class ErrorHandler {
     }
 
     /**
-     * Handles Google Drive errors
-     * @param {Error} error 
+     * Handles questionnaire loading errors
+     * @param {Error} error
      * @returns {string} User-friendly message
      */
-    handleGoogleDriveError(error) {
-        this.log(error, 'Google Drive');
-        return 'Error al cargar los cuestionarios desde Google Drive. Intentando usar datos en caché...';
+    handleQuestionnaireError(error) {
+        this.log(error, 'Questionnaire');
+        return 'Error al cargar los cuestionarios. Intentando usar datos en caché...';
     }
 
     /**

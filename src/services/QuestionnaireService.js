@@ -1,6 +1,6 @@
 /**
- * Google Drive Service
- * Fetches questionnaires from a public Google Drive folder
+ * Questionnaire Service
+ * Fetches questionnaires from local files
  */
 
 import { config } from '../config/config.js';
@@ -8,7 +8,7 @@ import { QuestionnaireModel } from '../models/QuestionnaireModel.js';
 import { errorHandler } from './ErrorHandler.js';
 import { storageService } from './StorageService.js';
 
-export class GoogleDriveService {
+export class QuestionnaireService {
     constructor() {
         this.questionnaires = [];
         this.isLoading = false;
@@ -16,21 +16,21 @@ export class GoogleDriveService {
     }
 
     /**
-     * Builds a Google Drive direct download URL from file ID
-     * @param {string} fileId - Google Drive file ID
-     * @returns {string} Direct download URL
+     * Builds a URL for a questionnaire file
+     * @param {string} filename - File name
+     * @returns {string} Full URL path
      */
-    buildDriveUrl(fileId) {
-        return `${config.googleDrive.downloadEndpoint}${fileId}`;
+    buildPath(filename) {
+        return `${config.questionnaires.basePath}${filename}`;
     }
 
     /**
-     * Fetches JSON content from Google Drive
-     * @param {string} fileId - Google Drive file ID
+     * Fetches JSON content from a local file
+     * @param {string} filename - File name
      * @returns {Promise<Object>} Parsed JSON data
      */
-    async fetchDriveJson(fileId) {
-        const url = this.buildDriveUrl(fileId);
+    async fetchJson(filename) {
+        const url = this.buildPath(filename);
         const response = await fetch(url);
         if (!response.ok) {
             throw new Error(`Failed to fetch file: ${response.status}`);
@@ -39,8 +39,7 @@ export class GoogleDriveService {
     }
 
     /**
-     * Fetches questionnaires from Google Drive
-     * Uses CORS proxy or direct access for public folder
+     * Fetches questionnaires from local files
      * @returns {Promise<Array<QuestionnaireModel>>}
      */
     async fetchQuestionnaires() {
@@ -60,8 +59,8 @@ export class GoogleDriveService {
         this.isLoading = true;
 
         try {
-            // Fetch questionnaires from Google Drive using manifest
-            const questionnaireFiles = await this.fetchFromGoogleDrive();
+            // Fetch questionnaires from local files
+            const questionnaireFiles = await this.fetchFromLocalFiles();
 
             this.questionnaires = questionnaireFiles
                 .map(q => QuestionnaireModel.create(q))
@@ -78,7 +77,7 @@ export class GoogleDriveService {
             return this.questionnaires;
 
         } catch (error) {
-            errorHandler.handleGoogleDriveError(error);
+            errorHandler.handleQuestionnaireError(error);
 
             // Try to use cached data
             const cached = storageService.getCachedQuestionnaires();
@@ -93,22 +92,24 @@ export class GoogleDriveService {
     }
 
     /**
-     * Fetches questionnaires from Google Drive using manifest file
+     * Fetches questionnaires from local files using manifest
      * @returns {Promise<Array>}
      */
-    async fetchFromGoogleDrive() {
+    async fetchFromLocalFiles() {
         // First, fetch the manifest that contains all questionnaire metadata
-        const manifest = await this.fetchDriveJson(config.googleDrive.manifestFileId);
+        const manifest = await this.fetchJson(config.questionnaires.manifestFile);
 
         const questionnaires = [];
 
         for (const item of manifest.questionnaires) {
             try {
-                // Fetch the questionnaire JSON from Drive
-                const data = await this.fetchDriveJson(item.jsonFileId);
+                // Fetch the questionnaire JSON
+                const data = await this.fetchJson(item.jsonFile);
 
-                // Add PDF URL from Drive
-                data.pdfPath = this.buildDriveUrl(item.pdfFileId);
+                // Add PDF path if available
+                if (item.pdfFile) {
+                    data.pdfPath = this.buildPath(item.pdfFile);
+                }
 
                 questionnaires.push(data);
             } catch (error) {
@@ -159,4 +160,4 @@ export class GoogleDriveService {
 }
 
 // Export singleton instance
-export const googleDriveService = new GoogleDriveService();
+export const questionnaireService = new QuestionnaireService();
