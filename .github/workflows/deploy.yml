@@ -22,10 +22,6 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Inject environment variables
-        run: |
-          sed -i "s/__MANIFEST_FILE_ID__/${{ secrets.MANIFEST_FILE_ID }}/g" src/config/config.js
-
       - name: Setup Pages
         uses: actions/configure-pages@v4
 

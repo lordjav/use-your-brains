@@ -3,7 +3,7 @@
  * Manages the quiz gameplay, questions, answers, and scoring (refactored from script.js)
  */
 
-import { googleDriveService } from '../services/GoogleDriveService.js';
+import { questionnaireService } from '../services/QuestionnaireService.js';
 import { storageService } from '../services/StorageService.js';
 import { themeService } from '../services/ThemeService.js';
 import { errorHandler } from '../services/ErrorHandler.js';
@@ -160,7 +160,7 @@ export class QuizGame {
      */
     async loadQuestionnaire() {
         try {
-            const questionnaires = await googleDriveService.fetchQuestionnaires();
+            const questionnaires = await questionnaireService.fetchQuestionnaires();
             this.questionnaire = questionnaires.find(q => q.id === this.questionnaireId);
 
             if (!this.questionnaire) {
@@ -174,7 +174,7 @@ export class QuizGame {
             this.populateQuestionSelector();
 
         } catch (error) {
-            errorHandler.handleGoogleDriveError(error);
+            errorHandler.handleQuestionnaireError(error);
             errorHandler.showError('No se pudo cargar el cuestionario');
             setTimeout(() => window.location.href = 'index.html', 3000);
         }

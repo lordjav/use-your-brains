@@ -1,14 +1,13 @@
 /**
  * Application Configuration
- * The MANIFEST_FILE_ID placeholder is replaced during GitHub Actions build
  */
 
 export const config = {
-  googleDrive: {
-    // This placeholder is replaced by GitHub Actions with the secret value
-    manifestFileId: '__MANIFEST_FILE_ID__',
-    // Google Apps Script proxy endpoint (avoids CORS issues)
-    downloadEndpoint: 'https://script.google.com/macros/s/AKfycbwYbktN4wk9UesNGnE4QjPtu2aaMsnSGYJETmvTmJ_JLWMOca3gM3rN1-ZTXw3DkE7d4Q/exec?id='
+  questionnaires: {
+    // Base path for questionnaire files
+    basePath: 'questionnaires/',
+    // Manifest file name
+    manifestFile: 'manifest.json'
   },
   app: {
     questionnaireCacheDuration: 3600000, // 1 hour in milliseconds
