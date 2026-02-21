@@ -276,24 +276,24 @@ export class QuizGame {
         if (!this.questionCount || !this.questionnaire) return;
 
         const totalQuestions = this.questionnaire.questions.length;
-        const options = [10, 20, 30, 40, 50];
+        const presetOptions = [10, 20, 30, 40, 50];
 
-        // Only show options that are <= total questions, plus "All" option
-        const validOptions = options.filter(opt => opt <= totalQuestions);
+        // Show preset options that are <= total, and always include "all questions"
+        const validOptions = [...new Set([
+            ...presetOptions.filter(opt => opt <= totalQuestions),
+            totalQuestions
+        ].sort((a, b) => a - b))];
 
-        // Only add "All" option if there are more than 50 questions
-        if (totalQuestions > 50) {
-            validOptions.push(totalQuestions);
-        }
+        const defaultCount = Math.min(20, totalQuestions);
 
         this.questionCount.innerHTML = '';
-        validOptions.forEach((count, index) => {
+        validOptions.forEach((count) => {
             const option = document.createElement('option');
             option.value = count;
-            option.textContent = `${count} preguntas`;
-            if (count === 20 || (count < 20 && index === validOptions.length - 1)) {
-                option.selected = true;
-            }
+            option.textContent = count === totalQuestions && totalQuestions > 50
+                ? `Todas (${count} preguntas)`
+                : `${count} preguntas`;
+            option.selected = (count === defaultCount);
             this.questionCount.appendChild(option);
         });
     }
