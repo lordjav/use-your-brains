@@ -43,13 +43,20 @@ export class QuestionnaireService {
      * @returns {Promise<Array<QuestionnaireModel>>}
      */
     async fetchQuestionnaires() {
-        // Check cache first
+        // Check cache only if it matches the current manifest (so new questionnaires appear)
         const cached = storageService.getCachedQuestionnaires();
         if (cached && cached.length > 0) {
-            console.log('Using cached questionnaires');
-            this.questionnaires = cached.map(q => QuestionnaireModel.fromJSON(q));
-            this.hasLoaded = true;
-            return this.questionnaires;
+            try {
+                const manifest = await this.fetchJson(config.questionnaires.manifestFile);
+                if (manifest.questionnaires && manifest.questionnaires.length === cached.length) {
+                    console.log('Using cached questionnaires');
+                    this.questionnaires = cached.map(q => QuestionnaireModel.fromJSON(q));
+                    this.hasLoaded = true;
+                    return this.questionnaires;
+                }
+            } catch (_) {
+                // If manifest fails, continue to load from cache or fetch
+            }
         }
 
         if (this.isLoading) {

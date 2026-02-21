@@ -26,6 +26,16 @@
       "id": "guyton-urine-concentration",
       "jsonFile": "guyton-urine-concentration/guyton-urine-concentration.json",
       "pdfFile": "guyton-urine-concentration/guyton-urine-concentration.pdf"
+    },
+    {
+      "id": "gartner-epithelium-and-glands",
+      "jsonFile": "gartner-epithelium-and-glands/gartner-epithelium-and-glands.json",
+      "pdfFile": "gartner-epithelium-and-glands/gartner-epithelium-and-glands.pdf"
+    },
+    {
+      "id": "clinics-epithelium-and-glands",
+      "jsonFile": "clinics-epithelium-and-glands/clinics-epithelium-and-glands.json",
+      "pdfFile": "gartner-epithelium-and-glands/gartner-epithelium-and-glands.pdf"
     }
   ]
 }
