@@ -36,6 +36,11 @@
       "id": "clinics-epithelium-and-glands",
       "jsonFile": "clinics-epithelium-and-glands/clinics-epithelium-and-glands.json",
       "pdfFile": "gartner-epithelium-and-glands/gartner-epithelium-and-glands.pdf"
+    },
+    {
+      "id": "gartner-urinary-histology",
+      "jsonFile": "gartner-urinary-histology/gartner-urinary-histology.json",
+      "pdfFile": "gartner-urinary-histology/gartner-urinary-histology.pdf"
     }
   ]
 }
