@@ -68,8 +68,20 @@ function ensureQuestionnaireJson(slug) {
   try {
     data = JSON.parse(raw);
   } catch (e) {
+    const trimmed = raw.trim();
+    const isEmpty = trimmed.length === 0;
+    const isIncomplete = e instanceof SyntaxError && e.message.includes('Unexpected end of JSON input');
+
     console.error(`[error] JSON inválido: ${jsonPath}`);
-    throw e;
+    if (isEmpty || isIncomplete) {
+      console.error(
+        `[error] El archivo está vacío o incompleto. ` +
+          `Asegúrate de que ${slug}.json tenga un objeto JSON válido con llaves de apertura y cierre.`
+      );
+    } else {
+      console.error(`[error] Detalle del parser: ${e.message}`);
+    }
+    return null;
   }
 
   let changed = false;
@@ -191,13 +203,31 @@ function main() {
     process.exit(0);
   }
 
+  const validSlugs = [];
+  const invalidSlugs = [];
   for (const slug of slugs) {
-    ensureQuestionnaireJson(slug);
+    const data = ensureQuestionnaireJson(slug);
+    if (data) {
+      validSlugs.push(slug);
+    } else {
+      invalidSlugs.push(slug);
+    }
+  }
+
+  if (invalidSlugs.length > 0) {
+    console.warn(
+      `[warn] Se omitieron ${invalidSlugs.length} cuestionario(s) con JSON inválido: ${invalidSlugs.join(', ')}`
+    );
+  }
+
+  if (validSlugs.length === 0) {
+    console.error('[fatal] No hay cuestionarios válidos para sincronizar.');
+    process.exit(1);
   }
 
   const previous = readJson(MANIFEST_PATH);
   const previousQuestionnaires = previous.questionnaires || [];
-  const nextQuestionnaires = mergeManifestItems(previousQuestionnaires, slugs);
+  const nextQuestionnaires = mergeManifestItems(previousQuestionnaires, validSlugs);
   const questionnairesChanged =
     JSON.stringify(nextQuestionnaires) !== JSON.stringify(previousQuestionnaires);
 
@@ -225,4 +255,9 @@ function main() {
   console.log('Listo.');
 }
 
-main();
+try {
+  main();
+} catch (error) {
+  console.error(`[fatal] ${error.message}`);
+  process.exit(1);
+}

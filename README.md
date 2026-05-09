@@ -49,9 +49,29 @@ questionnaires/
 
 ### Agregar nuevos cuestionarios
 
-1. Crea el archivo JSON con las preguntas (ver formato abajo)
-2. Opcionalmente, añade un PDF de referencia
-3. Agrega la entrada en `questionnaires/manifest.json`
+1. Crea una carpeta con el nombre del cuestionario (slug), por ejemplo:
+   - `questionnaires/mi-cuestionario/`
+2. Agrega los archivos dentro de esa carpeta:
+   - `mi-cuestionario.json`
+   - `mi-cuestionario.pdf` (opcional, pero recomendado)
+3. Ejecuta el script de sincronización:
+
+```bash
+node scripts/sync-questionnaires-manifest.mjs
+```
+
+Este script:
+- Detecta automáticamente nuevos cuestionarios en `questionnaires/`
+- Actualiza `questionnaires/manifest.json`
+- Añade `created_at` y `updated_at` en los JSON si faltan
+- Incrementa `cacheVersion` en `src/config/config.js` cuando cambia la lista, para invalidar caché y mostrar los nuevos cuestionarios en la app
+
+También puedes previsualizar cambios sin escribir archivos:
+
+```bash
+node scripts/sync-questionnaires-manifest.mjs --dry-run
+```
+
 4. Haz commit y push a `main`
 
 ### Formato de cuestionario JSON

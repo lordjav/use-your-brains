@@ -1,6 +1,6 @@
 {
   "version": "1.0",
-  "lastUpdated": "2026-04-19",
+  "lastUpdated": "2026-05-09",
   "questionnaires": [
     {
       "id": "guyton-glomerular-filtration",
@@ -46,6 +46,11 @@
       "id": "guyton-electrolytes-regulation",
       "jsonFile": "guyton-electrolytes-regulation/guyton-electrolytes-regulation.json",
       "pdfFile": "guyton-electrolytes-regulation/guyton-electrolytes-regulation.pdf"
+    },
+    {
+      "id": "guyton-acid-base-regulation",
+      "jsonFile": "guyton-acid-base-regulation/guyton-acid-base-regulation.json",
+      "pdfFile": "guyton-acid-base-regulation/guyton-acid-base-regulation.pdf"
     }
   ]
 }
