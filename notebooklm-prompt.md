@@ -13,7 +13,7 @@
 | `read_time` | number | `round((palabras / 100) + 2 × imágenes)` al múltiplo de 5 más cercano. Imágenes = figuras, gráficos, diagramas, fotos. |
 | `bibliography` | array | Siempre `[]`. |
 | `id` | string | Formato: `"guyton-"` + 2–3 palabras en inglés, minúsculas, separadas por guion. Ej.: `guyton-tubular-reabsorption`. |
-| `questions` | array | 50 preguntas objetivo; mínimo 30; mínimo absoluto 20. |
+| `questions` | array | 50 preguntas objetivo; mínimo 30. |
 
 ## Contenido de las preguntas
 - **Alcance:** Solo las páginas 1 a ⌊N/2⌋.

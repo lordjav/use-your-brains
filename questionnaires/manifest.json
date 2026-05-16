@@ -1,6 +1,6 @@
 {
   "version": "1.0",
-  "lastUpdated": "2026-02-15",
+  "lastUpdated": "2026-05-09",
   "questionnaires": [
     {
       "id": "guyton-glomerular-filtration",
@@ -35,7 +35,22 @@
     {
       "id": "clinics-epithelium-and-glands",
       "jsonFile": "clinics-epithelium-and-glands/clinics-epithelium-and-glands.json",
-      "pdfFile": "gartner-epithelium-and-glands/gartner-epithelium-and-glands.pdf"
+      "pdfFile": "clinics-epithelium-and-glands/clinics-epithelium-and-glands.pdf"
+    },
+    {
+      "id": "gartner-urinary-histology",
+      "jsonFile": "gartner-urinary-histology/gartner-urinary-histology.json",
+      "pdfFile": "gartner-urinary-histology/gartner-urinary-histology.pdf"
+    },
+    {
+      "id": "guyton-electrolytes-regulation",
+      "jsonFile": "guyton-electrolytes-regulation/guyton-electrolytes-regulation.json",
+      "pdfFile": "guyton-electrolytes-regulation/guyton-electrolytes-regulation.pdf"
+    },
+    {
+      "id": "guyton-acid-base-regulation",
+      "jsonFile": "guyton-acid-base-regulation/guyton-acid-base-regulation.json",
+      "pdfFile": "guyton-acid-base-regulation/guyton-acid-base-regulation.pdf"
     }
   ]
 }
