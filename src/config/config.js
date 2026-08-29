@@ -12,7 +12,7 @@ export const config = {
   app: {
     questionnaireCacheDuration: 3600000, // 1 hour in milliseconds
     defaultQuestionCount: 20,
-    cacheVersion: 7, // Bump this to invalidate old caches
+    cacheVersion: 10, // Bump this to invalidate old caches
     appTitle: 'Use sus Sesos',
     appVersion: '2.0.0'
   },

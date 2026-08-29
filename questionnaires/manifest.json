@@ -1,6 +1,6 @@
 {
   "version": "1.0",
-  "lastUpdated": "2026-05-09",
+  "lastUpdated": "2026-08-29",
   "questionnaires": [
     {
       "id": "guyton-glomerular-filtration",
@@ -51,6 +51,16 @@
       "id": "guyton-acid-base-regulation",
       "jsonFile": "guyton-acid-base-regulation/guyton-acid-base-regulation.json",
       "pdfFile": "guyton-acid-base-regulation/guyton-acid-base-regulation.pdf"
+    },
+    {
+      "id": "guyton-diuretics-and-nephropathies",
+      "jsonFile": "guyton-diuretics-and-nephropathies/guyton-diuretics-and-nephropathies.json",
+      "pdfFile": "guyton-diuretics-and-nephropathies/guyton-diuretics-and-nephropathies.pdf"
+    },
+    {
+      "id": "guyton-hemostasis-and-coagulation",
+      "jsonFile": "guyton-hemostasis-and-coagulation/guyton-hemostasis-and-coagulation.json",
+      "pdfFile": "guyton-hemostasis-and-coagulation/guyton-hemostasis-and-coagulation.pdf"
     }
   ]
 }
