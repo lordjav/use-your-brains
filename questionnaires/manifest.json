@@ -1,6 +1,6 @@
 {
   "version": "1.0",
-  "lastUpdated": "2026-08-29",
+  "lastUpdated": "2026-09-19",
   "questionnaires": [
     {
       "id": "guyton-glomerular-filtration",
@@ -61,6 +61,11 @@
       "id": "guyton-hemostasis-and-coagulation",
       "jsonFile": "guyton-hemostasis-and-coagulation/guyton-hemostasis-and-coagulation.json",
       "pdfFile": "guyton-hemostasis-and-coagulation/guyton-hemostasis-and-coagulation.pdf"
+    },
+    {
+      "id": "guyton-gastrointestinal-motility",
+      "jsonFile": "guyton-gastrointestinal-motility/guyton-gastrointestinal-motility.json",
+      "pdfFile": "guyton-gastrointestinal-motility/guyton-gastrointestinal-motility.pdf"
     }
   ]
 }
