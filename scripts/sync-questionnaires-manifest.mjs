@@ -55,6 +55,19 @@ function discoverQuestionnaireSlugs() {
     const jsonPath = path.join(QUESTIONNAIRES_DIR, slug, `${slug}.json`);
     if (fs.existsSync(jsonPath)) {
       slugs.push(slug);
+      continue;
+    }
+
+    const strayJsons = fs
+      .readdirSync(path.join(QUESTIONNAIRES_DIR, slug))
+      .filter((f) => f.toLowerCase().endsWith('.json'));
+    if (strayJsons.length > 0) {
+      console.warn(
+        `[warn] ${slug}: se ignora la carpeta porque falta ${slug}/${slug}.json ` +
+          `(encontrado: ${strayJsons.join(', ')}). El nombre de la carpeta y el del JSON deben coincidir.`
+      );
+    } else {
+      console.warn(`[warn] ${slug}: se ignora la carpeta porque no contiene ningún .json`);
     }
   }
   slugs.sort();
