@@ -1,6 +1,6 @@
 {
   "version": "1.0",
-  "lastUpdated": "2026-09-19",
+  "lastUpdated": "2026-09-22",
   "questionnaires": [
     {
       "id": "guyton-glomerular-filtration",
@@ -66,6 +66,11 @@
       "id": "guyton-gastrointestinal-motility",
       "jsonFile": "guyton-gastrointestinal-motility/guyton-gastrointestinal-motility.json",
       "pdfFile": "guyton-gastrointestinal-motility/guyton-gastrointestinal-motility.pdf"
+    },
+    {
+      "id": "guyton-propulsion-mixing",
+      "jsonFile": "guyton-propulsion-mixing/guyton-propulsion-mixing.json",
+      "pdfFile": "guyton-propulsion-mixing/guyton-propulsion-mixing.pdf"
     }
   ]
 }
